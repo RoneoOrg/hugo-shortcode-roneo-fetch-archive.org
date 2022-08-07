@@ -1,29 +1,21 @@
+{{/*  Source: https://gitlab.com/Roneo/hugo-shortcode-roneo-fetch-archive.org  */}}
 
 {{- $src := .Get "src" -}}
-
 {{ $dataJ := getJSON $src }}
-
 {{- $identifier := $dataJ.metadata.identifier -}}
-
 {{- $root := "https://archive.org/download" -}}
-
 
 {{ range $dataJ.files }}
   <ul>
       <li>
-
         {{$path := print $root "/" $identifier "/" .name}}
-
-        <a href="{{ $path }}">{{ index .name | markdownify }}</a>
-
+        <a href="{{ $path }}" target="_blank" aria-label="Télécharger {{ index .name | markdownify }}">{{ index .name | markdownify }}</a>
         {{ if in .source "original" }}
           <b>ORIGINAL</b>
         {{ end }}
         {{ if in .format "Text PDF" }}
           <b>PDF</b>
         {{ end }}
-
       </li>
   </ul>
-
 {{ end }}
