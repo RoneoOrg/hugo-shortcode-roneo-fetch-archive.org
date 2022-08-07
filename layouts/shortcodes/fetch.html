@@ -1,0 +1,17 @@
+{{/* Source:  */}}
+
+
+{{ $dataJ := getJSON "{{ .Get "url" }}" }}
+{{ range $dataJ.files }}
+  <ul>
+      <li>
+        {{ if in .source "original" }}
+          <b>ORIGINAL</b>
+        {{ end }}
+        {{ if in .format "Text PDF" }}
+          <b>PDF</b>
+        {{ end }}
+        {{ index .name | markdownify }}
+      </li>
+  </ul>
+{{ end }}
