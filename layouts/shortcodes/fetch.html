@@ -1,17 +1,34 @@
-{{/* Source:  */}}
+
+{{- $src := .Get "src" -}}
+
+{{ $dataJ := getJSON $src }}
+
+{{- $id := $dataJ.metadata.identifier -}}
+
+{{- $root := "https://archive.org/download" -}}
 
 
-{{ $dataJ := getJSON "{{ .Get "url" }}" }}
 {{ range $dataJ.files }}
   <ul>
       <li>
+
+        {{$path := print $root "/" $id "/" .name}}
+
+        <a href="{{ $path }}">{{ index .name | markdownify }}</a>
+
         {{ if in .source "original" }}
           <b>ORIGINAL</b>
         {{ end }}
         {{ if in .format "Text PDF" }}
           <b>PDF</b>
         {{ end }}
-        {{ index .name | markdownify }}
+
       </li>
   </ul>
+
+{{ end }}
+
+<h3>Identifier:</h3>
+{{ with $dataJ.metadata.identifier }}
+{{ . | markdownify }}
 {{ end }}
