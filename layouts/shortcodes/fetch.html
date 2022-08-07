@@ -3,7 +3,7 @@
 
 {{ $dataJ := getJSON $src }}
 
-{{- $id := $dataJ.metadata.identifier -}}
+{{- $identifier := $dataJ.metadata.identifier -}}
 
 {{- $root := "https://archive.org/download" -}}
 
@@ -12,7 +12,7 @@
   <ul>
       <li>
 
-        {{$path := print $root "/" $id "/" .name}}
+        {{$path := print $root "/" $identifier "/" .name}}
 
         <a href="{{ $path }}">{{ index .name | markdownify }}</a>
 
@@ -26,9 +26,4 @@
       </li>
   </ul>
 
-{{ end }}
-
-<h3>Identifier:</h3>
-{{ with $dataJ.metadata.identifier }}
-{{ . | markdownify }}
 {{ end }}
