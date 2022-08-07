@@ -9,7 +9,7 @@
   <ul>
       <li>
         {{$path := print $root "/" $identifier "/" .name}}
-        <a href="{{ $path }}" target="_blank" aria-label="Télécharger {{ index .name | markdownify }}">{{ index .name | markdownify }}</a>
+        <a href="{{ $path }}" target="_blank" aria-label="Télécharger {{ index .name | markdownify }}" download>{{ index .name | markdownify }}</a>
         {{ if in .source "original" }}
           <b>ORIGINAL</b>
         {{ end }}
