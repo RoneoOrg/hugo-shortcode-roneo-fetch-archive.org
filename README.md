@@ -16,6 +16,7 @@ Requires **Hugo > 0.42**
 Edit `config.toml`
 
     theme = ["hugo-shortcode-roneo-fetch-archive.org", "YourCurrentTheme"]
+    enableInlineShortcodes = true
 
 To learn more about "Theme components", see [the Hugo documentation](https://gohugo.io/hugo-modules/theme-components/)
 
