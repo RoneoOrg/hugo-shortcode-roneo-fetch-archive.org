@@ -10,6 +10,16 @@
       <li>
         {{$path := print $root "/" $identifier "/" .name}}
         <a href="{{ $path }}" target="_blank" aria-label="Télécharger {{ index .name }}" download>{{ index .name }}</a>
+        <br>
+
+        {{ if eq .Params.format "VBR MP3" }}
+          <figure>
+            <audio controls class="player">
+              <source src="{{- $path -}}" type="audio/mpeg">
+            </audio>
+          </figure>
+        {{ end }}
+
         {{ if in .source "original" }}
           <b>ORIGINAL</b>
         {{ end }}
