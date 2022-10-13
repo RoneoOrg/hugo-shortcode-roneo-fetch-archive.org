@@ -7,25 +7,32 @@
 
 {{ range $dataJ.files }}
   <ul>
+
+    {{/*  Show only MP3 files  */}}
+    {{ if eq .format "VBR MP3" }}
       <li>
         {{$path := print $root "/" $identifier "/" .name}}
         <a href="{{ $path }}" target="_blank" aria-label="Télécharger {{ index .name }}" download>{{ index .name }}</a>
         <br>
 
-        {{ if eq .Params.format "VBR MP3" }}
+          {{/*  Embed HTML player  */}}
           <figure>
             <audio controls class="player">
               <source src="{{- $path -}}" type="audio/mpeg">
             </audio>
           </figure>
-        {{ end }}
 
-        {{ if in .source "original" }}
-          <b>ORIGINAL</b>
-        {{ end }}
-        {{ if in .format "Text PDF" }}
-          <b>PDF</b>
-        {{ end }}
-      </li>
+          {{/*  Add a label depending on metadata  */}}
+          {{/*  {{ if in .source "original" }}
+            <b>ORIGINAL</b>
+          {{ end }}  */}}
+
+          {{/*  Add a label depending on filetype  */}}
+          {{/*  {{ if in .format "Text PDF" }}
+            <b>PDF</b>
+          {{ end }}  */}}
+
+        </li>
+    {{ end }}
   </ul>
 {{ end }}
